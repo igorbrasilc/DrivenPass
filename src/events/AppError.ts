@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import 'express-async-errors';
 
 import AppError from './../config/error.js';
 import AppLog from './AppLog.js';

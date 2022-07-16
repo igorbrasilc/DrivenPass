@@ -1,7 +1,7 @@
-import 'express-async-errors';
 import express, { json } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import 'express-async-errors';
 
 import ExceptionHandler from './events/AppError.js';
 import router from './routes/index.js';

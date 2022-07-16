@@ -27,7 +27,7 @@ export async function unhashAndComparePasswords(inputPassword: string, dbPasswor
 }
 
 export async function generateToken(data: User) {
-    const token = jwt.sign(data, process.env.JWT_TOKEN || 'secret', {expiresIn: 60 * 60});
+    const token = jwt.sign(data, process.env.JWT_TOKEN || 'secret', {expiresIn: 60 * 60 * 24});
     AppLog('Util', 'Token generated');
     return token;
 }
@@ -38,10 +38,10 @@ export async function decodeToken(token: string) {
     return decodedToken;
 }
 
-export async function validateToken(token: string) {
-    const tokenVerif = jwt.verify(token, process.env.JWT_TOKEN || 'secret');
-    AppLog('Util', 'Token verified');
-    return tokenVerif;
+export function validateToken(token: string) {
+        const tokenVerif = jwt.verify(token, process.env.JWT_TOKEN || 'secret');
+        AppLog('Util', 'Token verified');
+        return tokenVerif;
 }
 
 

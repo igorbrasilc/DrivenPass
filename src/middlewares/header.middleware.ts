@@ -1,13 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
-
+import * as userUtils from '../utils/userUtils.js'
 import AppError from '../config/error.js';
 import AppLog from '../events/AppLog.js';
 
-function processHeader(header: string, endpoint: string) {
+function processHeader(endpoint?: string) {
   return (req: Request, res: Response, next: NextFunction) => {
-    const data = req.header(header);
+    const header = req.header('authorization');
+    const tokenInput = header?.replace('Bearer', '').trim();
 
-    if (!data) {
+    if (!header) {
       throw new AppError(
         'Missing headers',
         400,
@@ -16,8 +17,10 @@ function processHeader(header: string, endpoint: string) {
       );
     }
 
+    const tokenValidation = userUtils.validateToken(tokenInput);
+    res.locals.user = tokenValidation;
+    res.locals.header = header;
     AppLog('Middleware', `Header for endpoint ${endpoint} processed`);
-    res.locals.header = data;
     return next();
   };
 }
