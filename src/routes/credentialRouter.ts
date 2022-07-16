@@ -12,4 +12,6 @@ controller.createCredential);
 
 credentialRouter.get('/credentials', processHeader('/credential'), controller.getCredentials);
 
+credentialRouter.get('/credentials/:id', processHeader('/credential/:id'), controller.getCredentialById);
+
 export default credentialRouter;

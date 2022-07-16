@@ -17,3 +17,15 @@ export async function getCredentials(userId: number) {
         updatedAt: true
     }});
 }
+
+export async function getCredentialById(userId: number, credentialId: number) {
+    return await prisma.credential.findFirstOrThrow({where: {userId, id: credentialId}, select: {
+        id: true,
+        title: true,
+        url: true,
+        username: true,
+        userId: true,
+        createdAt: true,
+        updatedAt: true
+    }});
+}

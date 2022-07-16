@@ -17,3 +17,9 @@ export async function getCredentials(userId: number) {
     AppLog('Service', 'Credentials retrieved');
     return credentials;
 }
+
+export async function getCredentialById(userId: number, credentialId: number) {
+    const credential: Partial<Credential> = await repository.getCredentialById(userId, credentialId);
+    AppLog('Service', 'Credential retrieved by id');
+    return credential;
+}
