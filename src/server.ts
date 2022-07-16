@@ -5,6 +5,7 @@ import app from './app.js';
 import 'dotenv/config';
 
 const PORT = +process.env.PORT || 4000;
+const HOST = process.env.HOST || 'localhost';
 
 app.get('/', async (_req: Request, res: Response) => res.send('Online'));
-app.listen(PORT, process.env.HOST, () => AppLog('Server', `Server running on port ${PORT}`));
+app.listen(PORT, HOST, () => AppLog('Server', `Server running on port ${PORT}`));

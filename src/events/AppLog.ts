@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-import LogTypes from './../interfaces/index';
+import LogTypes from './../interfaces/index.js';
 
 const types: LogTypes = {
   Middleware: 'magenta',
@@ -18,7 +18,8 @@ const AppLog = (
     | 'Repository'
     | 'Server'
     | 'Service'
-    | 'Error',
+    | 'Error'
+    | 'Util',
   text: string,
 ) => {
   console.log(

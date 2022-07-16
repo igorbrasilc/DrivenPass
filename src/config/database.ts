@@ -1,28 +1,5 @@
-import pg, { ClientConfig } from 'pg';
+import { PrismaClient } from '@prisma/client';
 
-import AppLog from './../events/AppLog';
-import './setup';
+const prisma = new PrismaClient();
 
-const { Client } = pg;
-const connectionString = process.env.DATABASE_URL ?? '';
-const databaseConfig: ClientConfig = { connectionString };
-
-if (process.env.MODE === 'PROD') {
-  databaseConfig.ssl = {
-    rejectUnauthorized: false,
-  };
-}
-
-const client = new Client(databaseConfig);
-exec();
-
-async function exec() {
-  try {
-    await client.connect();
-    AppLog('Server', 'Connected to database');
-  } catch (error) {
-    AppLog('Error', `Interal error whilte connecting to database | ${error}`);
-  }
-}
-
-export default client;
+export default prisma;

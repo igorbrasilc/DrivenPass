@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
-import AppError from '../config/error';
-import AppLog from '../events/AppLog';
+import AppError from '../config/error.js';
+import AppLog from '../events/AppLog.js';
 
 function processHeader(header: string, endpoint: string) {
   return (req: Request, res: Response, next: NextFunction) => {

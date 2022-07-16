@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { Schema } from 'joi';
 
-import AppError from '../config/error';
-import AppLog from '../events/AppLog';
+import AppError from '../config/error.js';
+import AppLog from '../events/AppLog.js';
 
 function validateSchema(schema: Schema, endpoint: string) {
   return (req: Request, res: Response, next: NextFunction) => {

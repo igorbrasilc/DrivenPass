@@ -1,17 +1,15 @@
 import bcrypt from "bcrypt";
-import Cryptr from "cryptr";
 import AppError from "../config/error.js";
 import AppLog from "../events/AppLog.js";
 import 'dotenv/config';
-
-const cryptrPassword = process.env.CRYPTR_PASSWORD || 'temporary';
-const cryptr = new Cryptr(cryptrPassword);
+import { User } from ".prisma/client";
+import jwt from 'jsonwebtoken';
 
 export function hashPassword(password: string) {
     const salt = 8;
     const hashedPassword = bcrypt.hashSync(password, salt);
 
-    AppLog('Middleware', 'Hashed password');
+    AppLog('Util', 'Hashed password');
     return hashedPassword;
 }
 
@@ -24,9 +22,28 @@ export async function unhashAndComparePasswords(inputPassword: string, dbPasswor
         )
     }
 
-    AppLog('Middleware', 'Password matched');
+    AppLog('Util', 'Password matched');
     return match; 
 }
+
+export async function generateToken(data: User) {
+    const token = jwt.sign(data, process.env.JWT_TOKEN || 'secret', {expiresIn: 60 * 60});
+    AppLog('Util', 'Token generated');
+    return token;
+}
+
+export async function decodeToken(token: string) {
+    const decodedToken = jwt.decode(token);
+    AppLog('Util', 'Token decoded');
+    return decodedToken;
+}
+
+export async function validateToken(token: string) {
+    const tokenVerif = jwt.verify(token, process.env.JWT_TOKEN || 'secret');
+    AppLog('Util', 'Token verified');
+    return tokenVerif;
+}
+
 
 
 

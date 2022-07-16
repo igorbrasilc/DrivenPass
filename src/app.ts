@@ -3,8 +3,8 @@ import express, { json } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 
-import ExceptionHandler from './events/AppError';
-import router from './routes/index';
+import ExceptionHandler from './events/AppError.js';
+import router from './routes/index.js';
 
 const app = express();
 app.use(cors());
