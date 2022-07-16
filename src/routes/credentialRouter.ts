@@ -10,4 +10,6 @@ credentialRouter.post('/new-credential',
 [validateSchema(schemas.credentialSchema, '/new-credential'), processHeader('new-credential')], 
 controller.createCredential);
 
+credentialRouter.get('/credentials', processHeader('/credential'), controller.getCredentials);
+
 export default credentialRouter;

@@ -12,3 +12,9 @@ export async function createCredential(req: Request, res: Response) {
     AppLog('Controller', 'Credential created');
     res.status(201).send('Credential created!');
 }
+
+export async function getCredentials(req: Request, res: Response) {
+    const user = res.locals.user as User;
+    const userCredentials = await services.getCredentials(user.id);
+    res.status(200).send(userCredentials); 
+}
