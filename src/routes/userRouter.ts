@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router } from 'express';
 import validateSchema from '../middlewares/schema.middleware.js';
 import * as schemas from '../schemas/userSchema.js';
 import * as controller from '../controllers/userController.js';

@@ -1,7 +1,7 @@
-import { CreateUserData, CreateUserInput } from "../interfaces/userTypes.js"
+import { CreateUserData, CreateUserInput } from '../interfaces/userTypes.js';
 import * as utils from '../utils/userUtils.js';
 import * as repository from '../repositories/userRepository.js';
-import AppError from "../config/error.js";
+import AppError from '../config/error.js';
 
 export async function checkIfEmailAlreadyExists(email: string, intention: 'toSignUp' | 'toSignIn') {
     const user = await repository.findByEmail(email);
@@ -10,6 +10,8 @@ export async function checkIfEmailAlreadyExists(email: string, intention: 'toSig
         if (user) {
             throw new AppError('User already exists', 409, 'User already exists', 'This email is already taken');
         }
+
+        return user;
     }
 
     if (intention === 'toSignIn') {
@@ -26,10 +28,9 @@ export async function signUp(userData: CreateUserData) {
     const hashedPassword = utils.hashPassword(userData.password);
     const objData = {
         email: userData.email,
-        password: hashedPassword
+        password: hashedPassword,
     };
     await repository.createUser(objData);
-    return;
 }
 
 export async function signIn(userInput: CreateUserData) {

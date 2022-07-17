@@ -1,5 +1,4 @@
-import { Credential } from ".prisma/client";
-import { User } from ".prisma/client";
+import { Credential } from '.prisma/client';
 
 export type CreateCredentialInput = Omit<Credential, 'id' | 'createdAt' | 'updatedAt' | 'userId'>;
 
