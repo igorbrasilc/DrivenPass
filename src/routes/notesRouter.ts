@@ -15,8 +15,14 @@ notesRouter.post(
 
 notesRouter.get(
     '/notes',
-    processHeader('/new-note'),
+    processHeader('/notes'),
     controllers.getSafeNotes,
+);
+
+notesRouter.get(
+    '/notes/:id',
+    processHeader('/notes/:id'),
+    controllers.getSafeNoteById,
 );
 
 export default notesRouter;

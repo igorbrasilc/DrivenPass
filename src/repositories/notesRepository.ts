@@ -13,3 +13,7 @@ export async function createSafeNote(data: CreateNoteData) {
 export async function getSafeNotes(userId: number) {
     return prisma.safeNote.findMany({ where: { userId } });
 }
+
+export async function getSafeNoteById(userId: number, noteId: number) {
+    return prisma.safeNote.findFirstOrThrow({ where: { userId, id: noteId } });
+}

@@ -10,6 +10,12 @@ export async function createSafeNote(data: SafeNotePartial, userId: number) {
 
 export async function getSafeNotes(userId: number) {
     const safeNotes = await repository.getSafeNotes(userId);
-    AppLog('Service', 'Created safe note');
+    AppLog('Service', 'Safe notes retrieved');
     return safeNotes;
+}
+
+export async function getSafeNoteById(userId: number, noteId: number) {
+    const safeNote = await repository.getSafeNoteById(userId, noteId);
+    AppLog('Service', 'Safe note retrieved by id');
+    return safeNote;
 }
