@@ -1,5 +1,5 @@
 import prisma from '../config/database.js';
-import { CardAndUser, CardCorrected } from '../interfaces/cardTypes.js';
+import { CardCorrected } from '../interfaces/cardTypes.js';
 
 export async function createCard(cardData: CardCorrected) {
     await prisma.card.create({ data: cardData });

@@ -1,9 +1,13 @@
 import { CardType } from '.prisma/client';
-import * as credentialUtils from '../utils/credentialUtils.js';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import * as repository from '../repositories/cardRepository.js';
+import * as credentialUtils from '../utils/credentialUtils.js';
 import AppLog from '../events/AppLog.js';
 import AppError from '../config/error.js';
-import { CardAndUser, CardCorrected, CardPartialInput } from '../interfaces/cardTypes.js';
+import { CardAndUser, CardCorrected } from '../interfaces/cardTypes.js';
+
+dayjs.extend(customParseFormat);
 
 export async function findCardType(type: 'debit' | 'credit' | 'both') {
     const cardType: CardType = await repository.findCardType(type);
@@ -28,7 +32,7 @@ export async function createCard(data: CardAndUser) {
         number: Number(data.number),
         username: data.username,
         CVC: encryptedCVC,
-        expirationDate: new Date(data.expirationDate),
+        expirationDate: dayjs(data.expirationDate, 'MM/YY', true).toDate(),
         password: encryptedPassword,
         isVirtual: data.isVirtual.toString() === 'true',
         cardTypeId: cardType.id,
