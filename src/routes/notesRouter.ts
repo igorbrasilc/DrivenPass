@@ -13,4 +13,10 @@ notesRouter.post(
     controllers.createSafeNote,
 );
 
+notesRouter.get(
+    '/notes',
+    processHeader('/new-note'),
+    controllers.getSafeNotes,
+);
+
 export default notesRouter;

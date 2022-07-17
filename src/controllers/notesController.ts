@@ -10,6 +10,10 @@ export async function createSafeNote(req: Request, res: Response) {
     res.status(201).send('Safe note created');
 }
 
-export async function temporary(req: Request, res: Response) {
-    return null;
+export async function getSafeNotes(req: Request, res: Response) {
+    const user = res.locals.user as User;
+    const safeNotes = await services.getSafeNotes(user.id);
+    res.status(200).send(safeNotes);
 }
+
+
