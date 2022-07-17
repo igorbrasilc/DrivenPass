@@ -17,3 +17,15 @@ export async function getSafeNotes(userId: number) {
 export async function getSafeNoteById(userId: number, noteId: number) {
     return prisma.safeNote.findFirstOrThrow({ where: { userId, id: noteId } });
 }
+
+export async function deleteNoteById(userId: number, noteId: number) {
+    const deletion = await prisma.safeNote.deleteMany({
+        where: {
+            AND: [
+                { userId },
+                { id: noteId },
+            ],
+        },
+    });
+    return deletion;
+}

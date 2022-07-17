@@ -25,4 +25,10 @@ notesRouter.get(
     controllers.getSafeNoteById,
 );
 
+notesRouter.delete(
+    '/notes/:id',
+    processHeader('/notes/:id'),
+    controllers.deleteNoteById,
+);
+
 export default notesRouter;

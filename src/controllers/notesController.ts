@@ -1,5 +1,6 @@
 import { User } from '.prisma/client';
 import { Request, Response } from 'express';
+import AppError from '../config/error.js';
 import { SafeNotePartial } from '../interfaces/notesTypes.js';
 import * as services from '../services/notesService.js';
 
@@ -21,4 +22,11 @@ export async function getSafeNoteById(req: Request, res: Response) {
     const { id } = req.params;
     const safeNote = await services.getSafeNoteById(user.id, Number(id));
     res.status(200).send(safeNote);
+}
+
+export async function deleteNoteById(req: Request, res: Response) {
+    const user = res.locals.user as User;
+    const { id } = req.params;
+    await services.deleteNoteById(user.id, Number(id));
+    res.sendStatus(200);
 }
