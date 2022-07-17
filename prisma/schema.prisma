@@ -57,10 +57,10 @@ model Card {
     title          String    @db.VarChar(50)
     number         Int
     username       String
-    CVC            Int
-    expirationDate DateTime?
+    CVC            String
+    expirationDate DateTime
     password       String
-    isVirtual      Boolean?
+    isVirtual      Boolean
     userId         Int
     user           User      @relation(fields: [userId], references: [id])
     cardTypeId     Int
@@ -74,11 +74,17 @@ model Card {
 
 model CardType {
     id        Int      @id @default(autoincrement())
-    type      String   @unique
+    type      Type   @unique
     createdAt DateTime @default(now())
     cards     Card[]
 
     @@map("cardTypes")
+}
+
+enum Type {
+    credit
+    debit
+    both
 }
 
 model Wifi {
