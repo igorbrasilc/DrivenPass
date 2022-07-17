@@ -12,6 +12,5 @@ export async function encryptPassword(password: string) {
 
 export async function decryptPassword(encryptedPassword: string) {
     const decryptedPassword = cryptr.decrypt(encryptedPassword);
-    AppLog('Util', 'Credential password decrypted');
     return decryptedPassword;
 }

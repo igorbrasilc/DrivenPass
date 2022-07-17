@@ -19,16 +19,16 @@ cardRouter.get(
     controller.getCards,
 );
 
-// cardRouter.get(
-//     '/credentials/:id',
-//     processHeader('/credential/:id'),
-//     controller.getCredentialById,
-// );
+cardRouter.get(
+    '/cards/:id',
+    processHeader('/card/:id'),
+    controller.getCardById,
+);
 
 // cardRouter.delete(
-//     '/credentials/:id',
-//     processHeader('/credential/:id'),
-//     controller.deleteCredentialById,
+//     '/cards/:id',
+//     processHeader('/card/:id'),
+//     controller.deleteCardById,
 // );
 
 export default cardRouter;

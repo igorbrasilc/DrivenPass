@@ -24,6 +24,7 @@
         "import/no-unresolved": 0,
         "import/no-extraneous-dependencies": "off",
         "max-len": "warn",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "no-param-reassign": "warn"
     }
 }

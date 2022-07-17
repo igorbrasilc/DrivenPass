@@ -19,12 +19,12 @@ export async function getCards(req: Request, res: Response) {
     res.status(200).send(cards);
 }
 
-// export async function getCredentialById(req: Request, res: Response) {
-//     const user = res.locals.user as User;
-//     const { id: credentialId } = req.params;
-//     const userCredential = await services.getCredentialById(user.id, Number(credentialId));
-//     res.status(200).send(userCredential);
-// }
+export async function getCardById(req: Request, res: Response) {
+    const user = res.locals.user as User;
+    const { id: cardId } = req.params;
+    const userCard = await services.getCardById(user.id, Number(cardId));
+    res.status(200).send(userCard);
+}
 
 // export async function deleteCredentialById(req: Request, res: Response) {
 //     const user = res.locals.user as User;

@@ -42,27 +42,39 @@ export async function createCard(data: CardAndUser) {
     AppLog('Service', 'Card created in db');
 }
 
+export async function decryptCards(cards: Card[]) {
+    return cards.forEach(
+        async (card) => {
+            card.password = await credentialUtils.decryptPassword(card.password);
+            card.CVC = await credentialUtils.decryptPassword(card.CVC);
+        },
+    );
+}
+
 export async function getCards(userId: number) {
-    const cards: Partial<Card>[] = await repository.getCards(userId);
+    const cards: Card[] = await repository.getCards(userId);
+    await decryptCards(cards);
     AppLog('Service', 'Cards retrieved');
     return cards;
 }
 
-// export async function getCredentialById(userId: number, credentialId: number) {
-//     const credential: Partial<Credential> = await repository.getCredentialById(userId, credentialId);
-//     AppLog('Service', 'Credential retrieved by id');
-//     return credential;
-// }
+export async function getCardById(userId: number, cardId: number) {
+    const card: Card = await repository.getCardById(userId, cardId);
+    card.password = await credentialUtils.decryptPassword(card.password);
+    card.CVC = await credentialUtils.decryptPassword(card.CVC);
+    AppLog('Service', 'Card retrieved by id');
+    return card;
+}
 
-// export async function deleteCredentialById(userId: number, credentialId: number) {
-//     const deletion = await repository.deleteCredentialById(userId, credentialId);
+// export async function deletecardById(userId: number, cardId: number) {
+//     const deletion = await repository.deletecardById(userId, cardId);
 //     if (deletion.count === 0) {
 //         throw new AppError(
-//             'Not found credential',
+//             'Not found card',
 //             404,
-//             'Not found credential',
-//             'The credential you requested doesnt exist or doesnt belong to this user',
+//             'Not found card',
+//             'The card you requested doesnt exist or doesnt belong to this user',
 //         );
 //     }
-//     AppLog('Service', 'Credential deleted');
+//     AppLog('Service', 'card deleted');
 // }

@@ -12,3 +12,7 @@ export async function findCardType(type: 'credit' | 'debit' | 'both') {
 export async function getCards(userId: number) {
     return prisma.card.findMany({ where: { userId } });
 }
+
+export async function getCardById(userId: number, cardId: number) {
+    return prisma.card.findFirstOrThrow({ where: { id: cardId, userId } });
+}
