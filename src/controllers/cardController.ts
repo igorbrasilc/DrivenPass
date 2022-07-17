@@ -13,11 +13,11 @@ export async function createCard(req: Request, res: Response) {
     res.status(201).send('Card created!');
 }
 
-// export async function getCredentials(req: Request, res: Response) {
-//     const user = res.locals.user as User;
-//     const userCredentials = await services.getCredentials(user.id);
-//     res.status(200).send(userCredentials);
-// }
+export async function getCards(req: Request, res: Response) {
+    const user = res.locals.user as User;
+    const cards = await services.getCards(user.id);
+    res.status(200).send(cards);
+}
 
 // export async function getCredentialById(req: Request, res: Response) {
 //     const user = res.locals.user as User;

@@ -8,3 +8,7 @@ export async function createCard(cardData: CardCorrected) {
 export async function findCardType(type: 'credit' | 'debit' | 'both') {
     return prisma.cardType.findUnique({ where: { type } });
 }
+
+export async function getCards(userId: number) {
+    return prisma.card.findMany({ where: { userId } });
+}

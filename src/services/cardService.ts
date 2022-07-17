@@ -1,4 +1,4 @@
-import { CardType } from '.prisma/client';
+import { Card, CardType } from '.prisma/client';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import * as repository from '../repositories/cardRepository.js';
@@ -42,11 +42,11 @@ export async function createCard(data: CardAndUser) {
     AppLog('Service', 'Card created in db');
 }
 
-// export async function getCredentials(userId: number) {
-//     const credentials: Partial<Credential>[] = await repository.getCredentials(userId);
-//     AppLog('Service', 'Credentials retrieved');
-//     return credentials;
-// }
+export async function getCards(userId: number) {
+    const cards: Partial<Card>[] = await repository.getCards(userId);
+    AppLog('Service', 'Cards retrieved');
+    return cards;
+}
 
 // export async function getCredentialById(userId: number, credentialId: number) {
 //     const credential: Partial<Credential> = await repository.getCredentialById(userId, credentialId);

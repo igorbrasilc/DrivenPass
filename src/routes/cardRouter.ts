@@ -13,11 +13,11 @@ cardRouter.post(
     controller.createCard,
 );
 
-// cardRouter.get(
-//     '/credentials',
-//     processHeader('/credential'),
-//     controller.getCredentials,
-// );
+cardRouter.get(
+    '/cards',
+    processHeader('/cards'),
+    controller.getCards,
+);
 
 // cardRouter.get(
 //     '/credentials/:id',

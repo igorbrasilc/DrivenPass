@@ -12,14 +12,22 @@ export async function createCredential(data: CredentialAndUser) {
     AppLog('Service', 'Credential created in db');
 }
 
+export async function decryptCredentials(credentials: Partial<Credential>[]) {
+    return credentials.forEach(
+        async (credential) => credential.password = await utils.decryptPassword(credential.password),
+    );
+}
+
 export async function getCredentials(userId: number) {
     const credentials: Partial<Credential>[] = await repository.getCredentials(userId);
+    await decryptCredentials(credentials);
     AppLog('Service', 'Credentials retrieved');
     return credentials;
 }
 
 export async function getCredentialById(userId: number, credentialId: number) {
     const credential: Partial<Credential> = await repository.getCredentialById(userId, credentialId);
+    credential.password = await utils.decryptPassword(credential.password);
     AppLog('Service', 'Credential retrieved by id');
     return credential;
 }
