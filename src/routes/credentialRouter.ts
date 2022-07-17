@@ -11,7 +11,6 @@ credentialRouter.post('/new-credential',
 controller.createCredential);
 
 credentialRouter.get('/credentials', processHeader('/credential'), controller.getCredentials);
-
 credentialRouter.get('/credentials/:id', processHeader('/credential/:id'), controller.getCredentialById);
-
+credentialRouter.delete('/credentials/:id', processHeader('/credential/:id'), controller.deleteCredentialById);
 export default credentialRouter;

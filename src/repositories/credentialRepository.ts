@@ -29,3 +29,13 @@ export async function getCredentialById(userId: number, credentialId: number) {
         updatedAt: true
     }});
 }
+
+export async function deleteCredentialById(userId: number, credentialId: number) {
+    const deletion = await prisma.credential.deleteMany({where: {
+        AND: [
+            { userId },
+            { id: credentialId}
+        ]
+    }});
+    return deletion;
+}
