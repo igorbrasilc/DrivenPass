@@ -26,9 +26,9 @@ export async function getCardById(req: Request, res: Response) {
     res.status(200).send(userCard);
 }
 
-// export async function deleteCredentialById(req: Request, res: Response) {
-//     const user = res.locals.user as User;
-//     const { id: credentialId } = req.params;
-//     await services.deleteCredentialById(user.id, Number(credentialId));
-//     res.sendStatus(200);
-// }
+export async function deleteCardById(req: Request, res: Response) {
+    const user = res.locals.user as User;
+    const { id: cardId } = req.params;
+    await services.deleteCardById(user.id, Number(cardId));
+    res.sendStatus(200);
+}

@@ -25,10 +25,10 @@ cardRouter.get(
     controller.getCardById,
 );
 
-// cardRouter.delete(
-//     '/cards/:id',
-//     processHeader('/card/:id'),
-//     controller.deleteCardById,
-// );
+cardRouter.delete(
+    '/cards/:id',
+    processHeader('delete /cards/:id'),
+    controller.deleteCardById,
+);
 
 export default cardRouter;

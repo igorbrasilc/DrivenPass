@@ -16,3 +16,7 @@ export async function getCards(userId: number) {
 export async function getCardById(userId: number, cardId: number) {
     return prisma.card.findFirstOrThrow({ where: { id: cardId, userId } });
 }
+
+export async function deleteCardById(userId: number, cardId: number) {
+    return prisma.card.deleteMany({ where: { id: cardId, userId } });
+}

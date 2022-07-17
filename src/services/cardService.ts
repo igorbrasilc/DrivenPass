@@ -66,15 +66,15 @@ export async function getCardById(userId: number, cardId: number) {
     return card;
 }
 
-// export async function deletecardById(userId: number, cardId: number) {
-//     const deletion = await repository.deletecardById(userId, cardId);
-//     if (deletion.count === 0) {
-//         throw new AppError(
-//             'Not found card',
-//             404,
-//             'Not found card',
-//             'The card you requested doesnt exist or doesnt belong to this user',
-//         );
-//     }
-//     AppLog('Service', 'card deleted');
-// }
+export async function deleteCardById(userId: number, cardId: number) {
+    const deletion = await repository.deleteCardById(userId, cardId);
+    if (deletion.count === 0) {
+        throw new AppError(
+            'Not found card',
+            404,
+            'Not found card',
+            'The card you requested doesnt exist or doesnt belong to this user',
+        );
+    }
+    AppLog('Service', 'card deleted');
+}
