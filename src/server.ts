@@ -9,4 +9,4 @@ const { PORT, HOST } = process.env;
 // const HOST = process.env.HOST || 'localhost';
 
 app.get('/', async (_req: Request, res: Response) => res.send('Online'));
-app.listen(PORT, HOST, () => AppLog('Server', `Server running on port ${PORT}`));
+app.listen(+PORT, HOST, () => AppLog('Server', `Server running on port ${PORT}`));
