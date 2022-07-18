@@ -6,8 +6,8 @@
     "type": "module",
     "scripts": {
         "dev": "nodemon src/server.ts",
-        "build": "tsc",
-        "start": "node dist/server.js npx prisma migrate deploy"
+        "build": "tsc npx prisma migrate deploy",
+        "start": "node dist/server.js"
     },
     "keywords": [
         "t5"
